@@ -7,56 +7,70 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            max-width: 500px;
+            max-width: 480px;
             margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #f5f0e6 0%, #e8e0d0 100%);
+            padding: 24px 16px;
+            background: #fafafa;
             min-height: 100vh;
-            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
-        .title {
+        
+        .header {
             text-align: center;
-            font-size: 24px;
-            color: #8B0000;
-            font-weight: 700;
             margin-bottom: 20px;
         }
-        
-        .calendar {
-            background: #fff;
-            border-radius: 12px;
-            padding: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        .subtitle {
+            font-size: 13px;
+            color: #888;
+            margin-top: 4px;
         }
         
-        .month-row {
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        
+        .month {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
-        .month-label {
+        .month-title {
             font-size: 18px;
             font-weight: 600;
-            color: #333;
+            color: #1a1a1a;
         }
-        .nav-btns a {
-            padding: 5px 12px;
-            background: #f0f0f0;
-            border-radius: 6px;
+        .month-nav {
+            display: flex;
+            gap: 8px;
+        }
+        .month-nav a {
+            padding: 4px 10px;
+            font-size: 12px;
             color: #666;
             text-decoration: none;
-            font-size: 12px;
-            margin-left: 5px;
+            background: #f5f5f5;
+            border-radius: 6px;
         }
         
         .weekdays {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             text-align: center;
-            color: #888;
-            font-size: 12px;
             margin-bottom: 8px;
+        }
+        .weekday {
+            font-size: 11px;
+            color: #999;
+            padding: 8px 0;
         }
         
         .days {
@@ -65,101 +79,115 @@
             gap: 4px;
         }
         .day {
-            height: 40px;
+            aspect-ratio: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
-            color: #333;
             font-size: 14px;
+            color: #333;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.15s;
         }
-        .day.has-content {
-            background: #8B0000;
-            color: #fff;
+        .day:hover {
+            background: #f0f0f0;
+        }
+        .day.has {
+            background: #e8e0ff;
+            color: #5b4fc3;
+            font-weight: 500;
         }
         .day.today {
-            border: 2px solid #8B0000;
+            background: #1a1a1a;
+            color: #fff;
         }
-        .day.other-month {
-            color: #ccc;
+        .day.other {
+            color: #ddd;
         }
         
         .legend {
             text-align: center;
-            margin-top: 15px;
+            margin-top: 16px;
             font-size: 12px;
-            color: #888;
+            color: #999;
+        }
+        .legend span {
+            margin: 0 8px;
         }
     </style>
 </head>
 <body>
-    <div class="title">📬 住毛山日报</div>
+    <div class="header">
+        <div class="title">📬 住毛山日报</div>
+        <div class="subtitle">每天 12:00 · 20:00 更新</div>
+    </div>
     
-    <div class="calendar">
-        <div class="month-row">
-            <span class="month-label">2026年3月</span>
-            <div class="nav-btns">
-                <a href="?month=2">上月</a>
+    <div class="card">
+        <div class="month">
+            <span class="month-title">2026年3月</span>
+            <div class="month-nav">
+                <a href="?m=2">上月</a>
                 <a href="?">当月</a>
-                <a href="?month=4">下月</a>
+                <a href="?m=4">下月</a>
             </div>
         </div>
         
         <div class="weekdays">
-            <div>一</div>
-            <div>二</div>
-            <div>三</div>
-            <div>四</div>
-            <div>五</div>
-            <div>六</div>
-            <div>日</div>
+            <div class="weekday">一</div>
+            <div class="weekday">二</div>
+            <div class="weekday">三</div>
+            <div class="weekday">四</div>
+            <div class="weekday">五</div>
+            <div class="weekday">六</div>
+            <div class="weekday">日</div>
         </div>
         
         <div class="days">
-            <div class="day other-month">23</div>
-            <div class="day other-month">24</div>
-            <div class="day other-month">25</div>
-            <div class="day has-content today">26</div>
+            <div class="day other">23</div>
+            <div class="day other">24</div>
+            <div class="day other">25</div>
+            <div class="day has today">26</div>
             <div class="day">27</div>
             <div class="day">28</div>
             <div class="day">29</div>
             
             <div class="day">30</div>
             <div class="day">31</div>
-            <div class="day other-month">1</div>
-            <div class="day other-month">2</div>
-            <div class="day other-month">3</div>
-            <div class="day other-month">4</div>
-            <div class="day other-month">5</div>
+            <div class="day other">1</div>
+            <div class="day other">2</div>
+            <div class="day other">3</div>
+            <div class="day other">4</div>
+            <div class="day other">5</div>
             
-            <div class="day other-month">6</div>
-            <div class="day other-month">7</div>
-            <div class="day other-month">8</div>
-            <div class="day other-month">9</div>
-            <div class="day other-month">10</div>
-            <div class="day other-month">11</div>
-            <div class="day other-month">12</div>
+            <div class="day other">6</div>
+            <div class="day other">7</div>
+            <div class="day other">8</div>
+            <div class="day other">9</div>
+            <div class="day other">10</div>
+            <div class="day other">11</div>
+            <div class="day other">12</div>
             
-            <div class="day other-month">13</div>
-            <div class="day other-month">14</div>
-            <div class="day other-month">15</div>
-            <div class="day other-month">16</div>
-            <div class="day other-month">17</div>
-            <div class="day other-month">18</div>
-            <div class="day other-month">19</div>
+            <div class="day other">13</div>
+            <div class="day other">14</div>
+            <div class="day other">15</div>
+            <div class="day other">16</div>
+            <div class="day other">17</div>
+            <div class="day other">18</div>
+            <div class="day other">19</div>
             
-            <div class="day other-month">20</div>
-            <div class="day other-month">21</div>
-            <div class="day other-month">22</div>
-            <div class="day other-month">23</div>
-            <div class="day other-month">24</div>
-            <div class="day other-month">25</div>
-            <div class="day other-month">26</div>
+            <div class="day other">20</div>
+            <div class="day other">21</div>
+            <div class="day other">22</div>
+            <div class="day other">23</div>
+            <div class="day other">24</div>
+            <div class="day other">25</div>
+            <div class="day other">26</div>
         </div>
     </div>
     
     <div class="legend">
-        🟤 有内容 &nbsp;&nbsp; 🔴 今天
+        <span>🟪 有内容</span>
+        <span>⬛ 今天</span>
     </div>
 </body>
 </html>
