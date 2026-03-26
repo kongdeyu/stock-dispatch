@@ -7,12 +7,12 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            max-width: 380px;
+            max-width: 500px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 30px 20px;
             background: #fff;
             min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
         }
         
         .title {
@@ -20,168 +20,134 @@
             font-size: 28px;
             font-weight: 300;
             color: #000;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
         .subtitle {
             text-align: center;
-            font-size: 12px;
-            color: #8e8e93;
+            font-size: 13px;
+            color: #888;
             margin-bottom: 24px;
         }
         
-        .month-header {
+        .list {
+            list-style: none;
+        }
+        .list-item {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
-        }
-        .month-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #000;
-        }
-        .nav a {
-            font-size: 14px;
-            color: #007aff;
+            padding: 14px 0;
+            border-bottom: 1px solid #eee;
             text-decoration: none;
-            margin-left: 14px;
+            color: #333;
         }
-        
-        .weekdays {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            text-align: center;
-            margin-bottom: 6px;
+        .list-item:hover {
+            background: #f9f9f9;
+            margin: 0 -20px;
+            padding: 14px 20px;
         }
-        .weekday {
-            font-size: 11px;
-            font-weight: 600;
-            color: #8e8e93;
-            padding: 6px 0;
+        .list-item:last-child {
+            border-bottom: none;
         }
-        
-        .days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
+        .list-item.today {
+            background: #f0f7ff;
+            margin: 0 -20px;
+            padding: 14px 20px;
+            border-radius: 8px;
         }
-        .day {
-            height: 54px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            color: #000;
-            cursor: pointer;
-            position: relative;
-            text-decoration: none;
-            border-radius: 10px;
-            transition: all 0.15s;
-        }
-        .day:hover {
-            background: #f5f5f7;
-        }
-        .day .date {
+        .date {
+            width: 60px;
             font-size: 15px;
             font-weight: 500;
-            margin-bottom: 2px;
+            color: #000;
         }
-        .day .tag {
-            font-size: 10px;
-            padding: 2px 6px;
+        .tags {
+            flex: 1;
+            display: flex;
+            gap: 6px;
+        }
+        .tag {
+            font-size: 11px;
+            padding: 3px 8px;
             border-radius: 4px;
             color: #fff;
+        }
+        .tag.noon {
             background: #007aff;
         }
-        .day .tag.even {
+        .tag.evening {
             background: #5856d6;
         }
-        .day .tag.both {
-            background: linear-gradient(90deg, #007aff 50%, #5856d6 50%);
-        }
-        .day.weekend .date {
-            color: #8e8e93;
-        }
-        .day.today {
-            background: #007aff;
-        }
-        .day.today .date,
-        .day.today .tag {
-            color: #fff;
-        }
-        .day.today .tag {
-            background: #fff;
-            color: #007aff;
-        }
-        .day.other {
-            opacity: 0.3;
+        .arrow {
+            color: #ccc;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <div class="title">📅 住毛山日报</div>
+    <div class="title">📬 住毛山日报</div>
     <div class="subtitle">每天 12:00 · 20:00 更新</div>
     
-    <div class="month-header">
-        <span class="month-title">三月 2026</span>
-        <div class="nav">
-            <a href="?m=2">上月</a>
-            <a href="?">今天</a>
-            <a href="?m=4">下月</a>
-        </div>
-    </div>
-    
-    <div class="weekdays">
-        <div class="weekday">一</div>
-        <div class="weekday">二</div>
-        <div class="weekday">三</div>
-        <div class="weekday">四</div>
-        <div class="weekday">五</div>
-        <div class="weekday">六</div>
-        <div class="weekday">日</div>
-    </div>
-    
-    <div class="days">
-        <a class="day other weekend" href="evening/晚间速递_20260323.html"><span class="date">23</span></a>
-        <a class="day other" href="evening/晚间速递_20260324.html"><span class="date">24</span></a>
-        <a class="day other" href="evening/晚间速递_20260325.html"><span class="date">25</span></a>
-        <a class="day today" href="evening/晚间速递_20260326.html"><span class="date">26</span><span class="tag both">午晚</span></a>
-        <a class="day" href="evening/晚间速递_20260327.html"><span class="date">27</span><span class="tag even">晚</span></a>
-        <a class="day weekend" href="evening/晚间速递_20260328.html"><span class="date">28</span></a>
-        <a class="day weekend" href="evening/晚间速递_20260329.html"><span class="date">29</span></a>
-        
-        <a class="day" href="evening/晚间速递_20260330.html"><span class="date">30</span><span class="tag">午</span></a>
-        <a class="day" href="evening/晚间速递_20260331.html"><span class="date">31</span><span class="tag even">晚</span></a>
-        <a class="day other" href="evening/晚间速递_20260401.html"><span class="date">1</span></a>
-        <a class="day other" href="evening/晚间速递_20260402.html"><span class="date">2</span></a>
-        <a class="day other" href="evening/晚间速递_20260403.html"><span class="date">3</span><span class="tag">午</span></a>
-        <a class="day other weekend" href="evening/晚间速递_20260404.html"><span class="date">4</span></a>
-        <a class="day other weekend" href="evening/晚间速递_20260405.html"><span class="date">5</span></a>
-        
-        <a class="day other" href="evening/晚间速递_20260406.html"><span class="date">6</span></a>
-        <a class="day other" href="evening/晚间速递_20260407.html"><span class="date">7</span><span class="tag even">晚</span></a>
-        <a class="day other" href="evening/晚间速递_20260408.html"><span class="date">8</span><span class="tag">午</span></a>
-        <a class="day other" href="evening/晚间速递_20260409.html"><span class="date">9</span></a>
-        <a class="day other" href="evening/晚间速递_20260410.html"><span class="date">10</span><span class="tag both">午晚</span></a>
-        <a class="day other weekend" href="evening/晚间速递_20260411.html"><span class="date">11</span></a>
-        <a class="day other weekend" href="evening/晚间速递_20260412.html"><span class="date">12</span></a>
-        
-        <a class="day other" href="evening/晚间速递_20260413.html"><span class="date">13</span><span class="tag">午</span></a>
-        <a class="day other" href="evening/晚间速递_20260414.html"><span class="date">14</span></a>
-        <a class="day other" href="evening/晚间速递_20260415.html"><span class="date">15</span><span class="tag even">晚</span></a>
-        <a class="day other" href="evening/晚间速递_20260416.html"><span class="date">16</span></a>
-        <a class="day other" href="evening/晚间速递_20260417.html"><span class="date">17</span><span class="tag both">午晚</span></a>
-        <a class="day other weekend" href="evening/晚间速递_20260418.html"><span class="date">18</span></a>
-        <a class="day other weekend" href="evening/晚间速递_20260419.html"><span class="date">19</span></a>
-        
-        <a class="day other" href="evening/晚间速递_20260420.html"><span class="date">20</span><span class="tag">午</span></a>
-        <a class="day other" href="evening/晚间速递_20260421.html"><span class="date">21</span></a>
-        <a class="day other" href="evening/晚间速递_20260422.html"><span class="date">22</span><span class="tag even">晚</span></a>
-        <a class="day other" href="evening/晚间速递_20260423.html"><span class="date">23</span></a>
-        <a class="day other" href="evening/晚间速递_20260424.html"><span class="date">24</span><span class="tag both">午晚</span></a>
-        <a class="day other weekend" href="evening/晚间速递_20260425.html"><span class="date">25</span></a>
-        <a class="day other weekend" href="evening/晚间速递_20260426.html"><span class="date">26</span></a>
-    </div>
+    <ul class="list">
+        <li class="list-item today">
+            <span class="date">03-26</span>
+            <div class="tags">
+                <span class="tag noon">午间</span>
+                <span class="tag evening">晚间</span>
+            </div>
+            <span class="arrow">›</span>
+        </li>
+        <li class="list-item">
+            <span class="date">03-27</span>
+            <div class="tags">
+                <span class="tag evening">晚间</span>
+            </div>
+            <span class="arrow">›</span>
+        </li>
+        <li class="list-item">
+            <span class="date">03-28</span>
+            <div class="tags">
+            </div>
+            <span class="arrow">›</span>
+        </li>
+        <li class="list-item">
+            <span class="date">03-29</span>
+            <div class="tags">
+            </div>
+            <span class="arrow">›</span>
+        </li>
+        <li class="list-item">
+            <span class="date">03-30</span>
+            <div class="tags">
+                <span class="tag noon">午间</span>
+            </div>
+            <span class="arrow">›</span>
+        </li>
+        <li class="list-item">
+            <span class="date">03-31</span>
+            <div class="tags">
+                <span class="tag evening">晚间</span>
+            </div>
+            <span class="arrow">›</span>
+        </li>
+        <li class="list-item">
+            <span class="date">04-01</span>
+            <div class="tags">
+            </div>
+            <span class="arrow">›</span>
+        </li>
+        <li class="list-item">
+            <span class="date">04-02</span>
+            <div class="tags">
+            </div>
+            <span class="arrow">›</span>
+        </li>
+        <li class="list-item">
+            <span class="date">04-03</span>
+            <div class="tags">
+                <span class="tag noon">午间</span>
+            </div>
+            <span class="arrow">›</span>
+        </li>
+    </ul>
 </body>
 </html>
