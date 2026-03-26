@@ -41,15 +41,19 @@
             color: #000;
         }
         .nav-btn {
-            font-size: 14px;
+            font-size: 18px;
             color: #007aff;
             text-decoration: none;
-            padding: 4px 8px;
+            padding: 2px;
             cursor: pointer;
         }
         .nav-btn.disabled {
             color: #ccc;
             pointer-events: none;
+        }
+        .nav-btns {
+            display: flex;
+            gap: 0;
         }
         
         .weekdays {
@@ -59,7 +63,7 @@
             margin-bottom: 6px;
         }
         .weekday {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
             color: #8e8e93;
             padding: 6px 0;
@@ -71,7 +75,7 @@
             gap: 4px;
         }
         .day {
-            min-height: 52px;
+            min-height: 60px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -84,7 +88,7 @@
             background: #f5f5f7;
         }
         .day .date {
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 500;
             color: #000;
             margin-bottom: 2px;
@@ -95,7 +99,7 @@
         }
         .day .btn {
             display: block;
-            font-size: 9px;
+            font-size: 10px;
             padding: 3px 8px;
             border-radius: 3px;
             text-decoration: none;
@@ -132,23 +136,26 @@
     </style>
 </head>
 <body>
-    <div class="title">📅 住毛山日报</div>
+    <div class="title">📰 住毛山日报</div>
     <div class="subtitle">每天 12:00 · 20:00 更新</div>
     
     <div class="month-header">
-        <a class="nav-btn" id="prevMonth" href="?m=2">‹ 上月</a>
-        <span class="month-title" id="monthTitle">三月 2026</span>
-        <a class="nav-btn" id="nextMonth" href="?m=4">下月 ›</a>
+        <span class="month-title" id="monthTitle">2026年3月</span>
+        <div class="nav-btns">
+            <a class="nav-btn" id="prevMonth" href="?m=2">◀</a>
+            <a class="nav-btn" id="todayBtn" href="?">当月</a>
+            <a class="nav-btn" id="nextMonth" href="?m=4">▶</a>
+        </div>
     </div>
     
     <div class="weekdays">
+        <div class="weekday">日</div>
         <div class="weekday">一</div>
         <div class="weekday">二</div>
         <div class="weekday">三</div>
         <div class="weekday">四</div>
         <div class="weekday">五</div>
         <div class="weekday">六</div>
-        <div class="weekday">日</div>
     </div>
     
     <div class="days" id="calendar"></div>
@@ -172,7 +179,7 @@
         const daysInMonth = new Date(year, month, 0).getDate();
         
         const monthTitle = document.getElementById('monthTitle');
-        monthTitle.textContent = monthNames[month - 1] + ' ' + year;
+        monthTitle.textContent = year + '年' + month + '月';
         
         // 更新导航链接
         const prevBtn = document.getElementById('prevMonth');
@@ -203,7 +210,7 @@
         
         // 计算需要显示的天数（包括上月和下月的填充）
         // 周一=0, 周日=0，调整为周一=0
-        const startPadding = firstDay === 0 ? 6 : firstDay - 1;
+        const startPadding = firstDay;
         
         // 渲染上月的填充
         const prevMonth = month === 1 ? 12 : month - 1;
@@ -219,7 +226,7 @@
         
         // 渲染当月 - 只显示今天及以前的速递
         const dispatchData = {
-            3: { 24: ['evening'], 25: ['noon'], 26: ['noon', 'evening'] }
+            3: { 26: ['evening'] }
         };
         
         // 检查日期是否在今天或之前
@@ -250,9 +257,7 @@
                 if (btns.length > 0) {
                     html += '<div class="btns">';
                     if (btns.includes('noon')) {
-                        const href = month === 3 && d === 26 ? 'evening/晚间速递_20260326.html' : 
-                                    month === 3 ? `noon/午间速递_${year}${String(month).padStart(2,'0')}${String(d).padStart(2,'0')}.html` :
-                                    `noon/午间速递_${year}${String(month).padStart(2,'0')}${String(d).padStart(2,'0')}.html`;
+                        const href = `noon/午间速递_${year}${String(month).padStart(2,'0')}${String(d).padStart(2,'0')}.html`;
                         html += '<a class="btn noon" href="' + href + '">午</a>';
                     }
                     if (btns.includes('evening')) {
