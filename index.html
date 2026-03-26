@@ -73,7 +73,7 @@
             gap: 2px;
         }
         .day {
-            height: 36px;
+            height: 44px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -83,28 +83,30 @@
             border-radius: 50%;
             cursor: pointer;
             position: relative;
+            text-decoration: none;
+            transition: all 0.15s;
         }
         .day:hover {
             background: #f5f5f7;
         }
-        .day.has::after {
-            content: '';
-            width: 4px;
-            height: 4px;
-            background: #007aff;
-            border-radius: 50%;
-            position: absolute;
-            bottom: 4px;
+        .day.has {
+            color: #007aff;
+            font-weight: 600;
         }
         .day.today {
             background: #007aff;
             color: #fff;
         }
-        .day.today.has::after {
-            background: #fff;
+        .day.today.has {
+            color: #fff;
         }
         .day.other {
             color: #d2d2d7;
+        }
+        .day .tag {
+            font-size: 9px;
+            font-weight: 400;
+            margin-top: 2px;
         }
         
         .legend {
@@ -140,50 +142,50 @@
         </div>
         
         <div class="days">
-            <div class="day other">23</div>
-            <div class="day other">24</div>
-            <div class="day other">25</div>
-            <div class="day has today">26</div>
-            <div class="day">27</div>
-            <div class="day">28</div>
-            <div class="day">29</div>
+            <a class="day other" href="evening/晚间速递_20260323.html">23</a>
+            <a class="day other" href="evening/晚间速递_20260324.html">24</a>
+            <a class="day other" href="evening/晚间速递_20260325.html">25</a>
+            <a class="day has today" href="evening/晚间速递_20260326.html">26<span class="tag">午晚</span></a>
+            <a class="day" href="evening/晚间速递_20260327.html">27</a>
+            <a class="day" href="evening/晚间速递_20260328.html">28</a>
+            <a class="day" href="evening/晚间速递_20260329.html">29</a>
             
-            <div class="day">30</div>
-            <div class="day">31</div>
-            <div class="day other">1</div>
-            <div class="day other">2</div>
-            <div class="day other">3</div>
-            <div class="day other">4</div>
-            <div class="day other">5</div>
+            <a class="day" href="evening/晚间速递_20260330.html">30</a>
+            <a class="day" href="evening/晚间速递_20260331.html">31</a>
+            <a class="day other" href="evening/晚间速递_20260401.html">1</a>
+            <a class="day other" href="evening/晚间速递_20260402.html">2</a>
+            <a class="day other" href="evening/晚间速递_20260403.html">3</a>
+            <a class="day other" href="evening/晚间速递_20260404.html">4</a>
+            <a class="day other" href="evening/晚间速递_20260405.html">5</a>
             
-            <div class="day other">6</div>
-            <div class="day other">7</div>
-            <div class="day other">8</div>
-            <div class="day other">9</div>
-            <div class="day other">10</div>
-            <div class="day other">11</div>
-            <div class="day other">12</div>
+            <a class="day other" href="evening/晚间速递_20260406.html">6</a>
+            <a class="day other" href="evening/晚间速递_20260407.html">7</a>
+            <a class="day other" href="evening/晚间速递_20260408.html">8</a>
+            <a class="day other" href="evening/晚间速递_20260409.html">9</a>
+            <a class="day other" href="evening/晚间速递_20260410.html">10</a>
+            <a class="day other" href="evening/晚间速递_20260411.html">11</a>
+            <a class="day other" href="evening/晚间速递_20260412.html">12</a>
             
-            <div class="day other">13</div>
-            <div class="day other">14</div>
-            <div class="day other">15</div>
-            <div class="day other">16</div>
-            <div class="day other">17</div>
-            <div class="day other">18</div>
-            <div class="day other">19</div>
+            <a class="day other" href="evening/晚间速递_20260413.html">13</a>
+            <a class="day other" href="evening/晚间速递_20260414.html">14</a>
+            <a class="day other" href="evening/晚间速递_20260415.html">15</a>
+            <a class="day other" href="evening/晚间速递_20260416.html">16</a>
+            <a class="day other" href="evening/晚间速递_20260417.html">17</a>
+            <a class="day other" href="evening/晚间速递_20260418.html">18</a>
+            <a class="day other" href="evening/晚间速递_20260419.html">19</a>
             
-            <div class="day other">20</div>
-            <div class="day other">21</div>
-            <div class="day other">22</div>
-            <div class="day other">23</div>
-            <div class="day other">24</div>
-            <div class="day other">25</div>
-            <div class="day other">26</div>
+            <a class="day other" href="evening/晚间速递_20260420.html">20</a>
+            <a class="day other" href="evening/晚间速递_20260421.html">21</a>
+            <a class="day other" href="evening/晚间速递_20260422.html">22</a>
+            <a class="day other" href="evening/晚间速递_20260423.html">23</a>
+            <a class="day other" href="evening/晚间速递_20260424.html">24</a>
+            <a class="day other" href="evening/晚间速递_20260425.html">25</a>
+            <a class="day other" href="evening/晚间速递_20260426.html">26</a>
         </div>
     </div>
     
     <div class="legend">
-        蓝点 = 有内容 &nbsp;|&nbsp; 蓝色背景 = 今天
+        蓝色 = 有内容 &nbsp;|&nbsp; 蓝色背景 = 今天
     </div>
 </body>
 </html>
