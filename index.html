@@ -40,11 +40,16 @@
             font-weight: 600;
             color: #000;
         }
-        .nav a {
+        .nav-btn {
             font-size: 14px;
             color: #007aff;
             text-decoration: none;
-            margin-left: 14px;
+            padding: 4px 8px;
+            cursor: pointer;
+        }
+        .nav-btn.disabled {
+            color: #ccc;
+            pointer-events: none;
         }
         
         .weekdays {
@@ -82,17 +87,20 @@
             font-size: 13px;
             font-weight: 500;
             color: #000;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
         .day .btns {
             display: flex;
             gap: 3px;
         }
         .day .btn {
+            display: block;
             font-size: 9px;
-            padding: 2px 5px;
+            padding: 3px 8px;
             border-radius: 3px;
             text-decoration: none;
+            min-width: 20px;
+            text-align: center;
         }
         .day .btn.noon {
             background: #007aff;
@@ -118,6 +126,9 @@
         .day.other {
             opacity: 0.3;
         }
+        .day.empty {
+            visibility: hidden;
+        }
     </style>
 </head>
 <body>
@@ -125,12 +136,9 @@
     <div class="subtitle">每天 12:00 · 20:00 更新</div>
     
     <div class="month-header">
-        <span class="month-title">三月 2026</span>
-        <div class="nav">
-            <a href="?m=2">上月</a>
-            <a href="?">今天</a>
-            <a href="?m=4">下月</a>
-        </div>
+        <a class="nav-btn" id="prevMonth" href="?m=2">‹ 上月</a>
+        <span class="month-title" id="monthTitle">三月 2026</span>
+        <a class="nav-btn" id="nextMonth" href="?m=4">下月 ›</a>
     </div>
     
     <div class="weekdays">
@@ -143,61 +151,133 @@
         <div class="weekday">日</div>
     </div>
     
-    <div class="days">
-        <!-- 第1周 - 已过去的日期 -->
-        <div class="day other"><span class="date">23</span></div>
-        <div class="day">
-            <span class="date">24</span>
-            <div class="btns"><a class="btn evening" href="evening/晚间速递_20260324.html">晚</a></div>
-        </div>
-        <div class="day">
-            <span class="date">25</span>
-            <div class="btns"><a class="btn noon" href="noon/午间速递_20260325.html">午</a></div>
-        </div>
-        <div class="day today">
-            <span class="date">26</span>
-            <div class="btns">
-                <a class="btn noon" href="noon/午间速递_20260326.html">午</a>
-                <a class="btn evening" href="evening/晚间速递_20260326.html">晚</a>
-            </div>
-        </div>
-        <div class="day"><span class="date">27</span></div>
-        <div class="day weekend"><span class="date">28</span></div>
-        <div class="day weekend"><span class="date">29</span></div>
+    <div class="days" id="calendar"></div>
+
+    <script>
+    const monthNames = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+    
+    function getUrlParam(name) {
+        const params = new URLSearchParams(window.location.search);
+        return parseInt(params.get(name)) || new Date().getMonth() + 1;
+    }
+    
+    function renderCalendar(year, month) {
+        const today = new Date();
+        const isCurrentMonth = today.getFullYear() === year && today.getMonth() + 1 === month;
+        const todayDate = today.getDate();
         
-        <!-- 第2周 - 未来的日期，留空 -->
-        <div class="day"><span class="date">30</span></div>
-        <div class="day"><span class="date">31</span></div>
-        <div class="day other"><span class="date">1</span></div>
-        <div class="day other"><span class="date">2</span></div>
-        <div class="day other"><span class="date">3</span></div>
-        <div class="day other weekend"><span class="date">4</span></div>
-        <div class="day other weekend"><span class="date">5</span></div>
+        // 获取当月1日是周几 (0=周日, 1=周一...)
+        const firstDay = new Date(year, month - 1, 1).getDay();
+        // 获取当月有多少天
+        const daysInMonth = new Date(year, month, 0).getDate();
         
-        <!-- 之后都是下月了 -->
-        <div class="day other"><span class="date">6</span></div>
-        <div class="day other"><span class="date">7</span></div>
-        <div class="day other"><span class="date">8</span></div>
-        <div class="day other"><span class="date">9</span></div>
-        <div class="day other"><span class="date">10</span></div>
-        <div class="day other weekend"><span class="date">11</span></div>
-        <div class="day other weekend"><span class="date">12</span></div>
+        const monthTitle = document.getElementById('monthTitle');
+        monthTitle.textContent = monthNames[month - 1] + ' ' + year;
         
-        <div class="day other"><span class="date">13</span></div>
-        <div class="day other"><span class="date">14</span></div>
-        <div class="day other"><span class="date">15</span></div>
-        <div class="day other"><span class="date">16</span></div>
-        <div class="day other"><span class="date">17</span></div>
-        <div class="day other weekend"><span class="date">18</span></div>
-        <div class="day other weekend"><span class="date">19</span></div>
+        // 更新导航链接
+        const prevBtn = document.getElementById('prevMonth');
+        const nextBtn = document.getElementById('nextMonth');
         
-        <div class="day other"><span class="date">20</span></div>
-        <div class="day other"><span class="date">21</span></div>
-        <div class="day other"><span class="date">22</span></div>
-        <div class="day other"><span class="date">23</span></div>
-        <div class="day other"><span class="date">24</span></div>
-        <div class="day other weekend"><span class="date">25</span></div>
-        <div class="day other weekend"><span class="date">26</span></div>
-    </div>
+        if (month === 1) {
+            prevBtn.href = '?y=' + (year-1) + '&m=12';
+        } else {
+            prevBtn.href = '?m=' + (month - 1);
+        }
+        
+        if (month === 12) {
+            nextBtn.href = '?y=' + (year+1) + '&m=1';
+        } else {
+            nextBtn.href = '?m=' + (month + 1);
+        }
+        
+        // 禁用未来月份的下一页
+        if (year > today.getFullYear() || (year === today.getFullYear() && month > today.getMonth() + 1)) {
+            nextBtn.classList.add('disabled');
+            nextBtn.href = 'javascript:void(0)';
+        } else {
+            nextBtn.classList.remove('disabled');
+        }
+        
+        const container = document.getElementById('calendar');
+        container.innerHTML = '';
+        
+        // 计算需要显示的天数（包括上月和下月的填充）
+        // 周一=0, 周日=0，调整为周一=0
+        const startPadding = firstDay === 0 ? 6 : firstDay - 1;
+        
+        // 渲染上月的填充
+        const prevMonth = month === 1 ? 12 : month - 1;
+        const prevYear = month === 1 ? year - 1 : year;
+        const daysInPrevMonth = new Date(prevYear, prevMonth, 0).getDate();
+        
+        for (let i = startPadding - 1; i >= 0; i--) {
+            const day = document.createElement('div');
+            day.className = 'day other empty';
+            day.innerHTML = '<span class="date">' + (daysInPrevMonth - i) + '</span>';
+            container.appendChild(day);
+        }
+        
+        // 渲染当月
+        const dispatchData = {
+            3: { 24: ['evening'], 25: ['noon'], 26: ['noon', 'evening'] },
+            4: { 3: ['noon'], 7: ['evening'], 8: ['noon'], 10: ['evening'], 13: ['noon'], 15: ['evening'], 17: ['noon'], 20: ['noon'], 22: ['evening'], 24: ['noon'] }
+        };
+        
+        for (let d = 1; d <= daysInMonth; d++) {
+            const day = document.createElement('div');
+            const date = new Date(year, month - 1, d);
+            const weekday = date.getDay();
+            const isWeekend = weekday === 0 || weekday === 6;
+            
+            let classes = ['day'];
+            if (d === todayDate && isCurrentMonth) classes.push('today');
+            if (isWeekend) classes.push('weekend');
+            if (!isCurrentMonth && d > todayDate) classes.push('other');
+            
+            day.className = classes.join(' ');
+            
+            let html = '<span class="date">' + d + '</span>';
+            
+            // 检查是否有速递
+            if (dispatchData[month] && dispatchData[month][d]) {
+                const btns = dispatchData[month][d];
+                if (btns.length > 0) {
+                    html += '<div class="btns">';
+                    if (btns.includes('noon')) {
+                        const href = month === 3 && d === 26 ? 'evening/晚间速递_20260326.html' : 
+                                    month === 3 ? `noon/午间速递_${year}${String(month).padStart(2,'0')}${String(d).padStart(2,'0')}.html` :
+                                    `noon/午间速递_${year}${String(month).padStart(2,'0')}${String(d).padStart(2,'0')}.html`;
+                        html += '<a class="btn noon" href="' + href + '">午</a>';
+                    }
+                    if (btns.includes('evening')) {
+                        const href = `evening/晚间速递_${year}${String(month).padStart(2,'0')}${String(d).padStart(2,'0')}.html`;
+                        html += '<a class="btn evening" href="' + href + '">晚</a>';
+                    }
+                    html += '</div>';
+                }
+            }
+            
+            day.innerHTML = html;
+            container.appendChild(day);
+        }
+        
+        // 填充下月
+        const totalCells = startPadding + daysInMonth;
+        const remaining = 42 - totalCells; // 6行 x 7天
+        for (let d = 1; d <= remaining; d++) {
+            const day = document.createElement('div');
+            day.className = 'day other empty';
+            day.innerHTML = '<span class="date">' + d + '</span>';
+            container.appendChild(day);
+        }
+    }
+    
+    // 解析URL参数
+    const params = new URLSearchParams(window.location.search);
+    let year = parseInt(params.get('y')) || new Date().getFullYear();
+    let month = getUrlParam('m');
+    
+    renderCalendar(year, month);
+    </script>
 </body>
 </html>
