@@ -217,11 +217,17 @@
             container.appendChild(day);
         }
         
-        // 渲染当月
+        // 渲染当月 - 只显示今天及以前的速递
         const dispatchData = {
-            3: { 24: ['evening'], 25: ['noon'], 26: ['noon', 'evening'] },
-            4: { 3: ['noon'], 7: ['evening'], 8: ['noon'], 10: ['evening'], 13: ['noon'], 15: ['evening'], 17: ['noon'], 20: ['noon'], 22: ['evening'], 24: ['noon'] }
+            3: { 24: ['evening'], 25: ['noon'], 26: ['noon', 'evening'] }
         };
+        
+        // 检查日期是否在今天或之前
+        function isPastOrToday(y, m, d) {
+            const today = new Date();
+            const check = new Date(y, m - 1, d);
+            return check <= today;
+        }
         
         for (let d = 1; d <= daysInMonth; d++) {
             const day = document.createElement('div');
@@ -238,8 +244,8 @@
             
             let html = '<span class="date">' + d + '</span>';
             
-            // 检查是否有速递
-            if (dispatchData[month] && dispatchData[month][d]) {
+            // 检查是否有速递（只显示今天及之前的）
+            if (dispatchData[month] && dispatchData[month][d] && isPastOrToday(year, month, d)) {
                 const btns = dispatchData[month][d];
                 if (btns.length > 0) {
                     html += '<div class="btns">';
