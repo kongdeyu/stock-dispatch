@@ -7,12 +7,12 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            max-width: 500px;
+            max-width: 380px;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 40px 20px;
             background: #fff;
             min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
         }
         
         .title {
@@ -20,134 +20,184 @@
             font-size: 28px;
             font-weight: 300;
             color: #000;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         .subtitle {
             text-align: center;
-            font-size: 13px;
-            color: #888;
+            font-size: 12px;
+            color: #8e8e93;
             margin-bottom: 24px;
         }
         
-        .list {
-            list-style: none;
-        }
-        .list-item {
+        .month-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            padding: 14px 0;
-            border-bottom: 1px solid #eee;
-            text-decoration: none;
-            color: #333;
+            margin-bottom: 16px;
         }
-        .list-item:hover {
-            background: #f9f9f9;
-            margin: 0 -20px;
-            padding: 14px 20px;
-        }
-        .list-item:last-child {
-            border-bottom: none;
-        }
-        .list-item.today {
-            background: #f0f7ff;
-            margin: 0 -20px;
-            padding: 14px 20px;
-            border-radius: 8px;
-        }
-        .date {
-            width: 60px;
-            font-size: 15px;
-            font-weight: 500;
+        .month-title {
+            font-size: 18px;
+            font-weight: 600;
             color: #000;
         }
-        .tags {
-            flex: 1;
-            display: flex;
-            gap: 6px;
+        .nav a {
+            font-size: 14px;
+            color: #007aff;
+            text-decoration: none;
+            margin-left: 14px;
         }
-        .tag {
+        
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            margin-bottom: 6px;
+        }
+        .weekday {
             font-size: 11px;
-            padding: 3px 8px;
-            border-radius: 4px;
+            font-weight: 600;
+            color: #8e8e93;
+            padding: 6px 0;
+        }
+        
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+        .day {
+            min-height: 52px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            border-radius: 8px;
+            transition: all 0.15s;
+        }
+        .day:hover {
+            background: #f5f5f7;
+        }
+        .day .date {
+            font-size: 13px;
+            font-weight: 500;
+            color: #000;
+            margin-bottom: 4px;
+        }
+        .day .btns {
+            display: flex;
+            gap: 3px;
+        }
+        .day .btn {
+            font-size: 9px;
+            padding: 2px 5px;
+            border-radius: 3px;
+            text-decoration: none;
+        }
+        .day .btn.noon {
+            background: #007aff;
             color: #fff;
         }
-        .tag.noon {
+        .day .btn.evening {
+            background: #5856d6;
+            color: #fff;
+        }
+        .day.weekend .date {
+            color: #8e8e93;
+        }
+        .day.today {
             background: #007aff;
         }
-        .tag.evening {
-            background: #5856d6;
+        .day.today .date {
+            color: #fff;
         }
-        .arrow {
-            color: #ccc;
-            font-size: 14px;
+        .day.today .btn {
+            background: #fff;
+            color: #007aff;
+        }
+        .day.other {
+            opacity: 0.3;
         }
     </style>
 </head>
 <body>
-    <div class="title">📬 住毛山日报</div>
+    <div class="title">📅 住毛山日报</div>
     <div class="subtitle">每天 12:00 · 20:00 更新</div>
     
-    <ul class="list">
-        <li class="list-item today">
-            <span class="date">03-26</span>
-            <div class="tags">
-                <span class="tag noon">午间</span>
-                <span class="tag evening">晚间</span>
+    <div class="month-header">
+        <span class="month-title">三月 2026</span>
+        <div class="nav">
+            <a href="?m=2">上月</a>
+            <a href="?">今天</a>
+            <a href="?m=4">下月</a>
+        </div>
+    </div>
+    
+    <div class="weekdays">
+        <div class="weekday">一</div>
+        <div class="weekday">二</div>
+        <div class="weekday">三</div>
+        <div class="weekday">四</div>
+        <div class="weekday">五</div>
+        <div class="weekday">六</div>
+        <div class="weekday">日</div>
+    </div>
+    
+    <div class="days">
+        <!-- 第1周 - 已过去的日期 -->
+        <div class="day other"><span class="date">23</span></div>
+        <div class="day">
+            <span class="date">24</span>
+            <div class="btns"><a class="btn evening" href="evening/晚间速递_20260324.html">晚</a></div>
+        </div>
+        <div class="day">
+            <span class="date">25</span>
+            <div class="btns"><a class="btn noon" href="noon/午间速递_20260325.html">午</a></div>
+        </div>
+        <div class="day today">
+            <span class="date">26</span>
+            <div class="btns">
+                <a class="btn noon" href="noon/午间速递_20260326.html">午</a>
+                <a class="btn evening" href="evening/晚间速递_20260326.html">晚</a>
             </div>
-            <span class="arrow">›</span>
-        </li>
-        <li class="list-item">
-            <span class="date">03-27</span>
-            <div class="tags">
-                <span class="tag evening">晚间</span>
-            </div>
-            <span class="arrow">›</span>
-        </li>
-        <li class="list-item">
-            <span class="date">03-28</span>
-            <div class="tags">
-            </div>
-            <span class="arrow">›</span>
-        </li>
-        <li class="list-item">
-            <span class="date">03-29</span>
-            <div class="tags">
-            </div>
-            <span class="arrow">›</span>
-        </li>
-        <li class="list-item">
-            <span class="date">03-30</span>
-            <div class="tags">
-                <span class="tag noon">午间</span>
-            </div>
-            <span class="arrow">›</span>
-        </li>
-        <li class="list-item">
-            <span class="date">03-31</span>
-            <div class="tags">
-                <span class="tag evening">晚间</span>
-            </div>
-            <span class="arrow">›</span>
-        </li>
-        <li class="list-item">
-            <span class="date">04-01</span>
-            <div class="tags">
-            </div>
-            <span class="arrow">›</span>
-        </li>
-        <li class="list-item">
-            <span class="date">04-02</span>
-            <div class="tags">
-            </div>
-            <span class="arrow">›</span>
-        </li>
-        <li class="list-item">
-            <span class="date">04-03</span>
-            <div class="tags">
-                <span class="tag noon">午间</span>
-            </div>
-            <span class="arrow">›</span>
-        </li>
-    </ul>
+        </div>
+        <div class="day"><span class="date">27</span></div>
+        <div class="day weekend"><span class="date">28</span></div>
+        <div class="day weekend"><span class="date">29</span></div>
+        
+        <!-- 第2周 - 未来的日期，留空 -->
+        <div class="day"><span class="date">30</span></div>
+        <div class="day"><span class="date">31</span></div>
+        <div class="day other"><span class="date">1</span></div>
+        <div class="day other"><span class="date">2</span></div>
+        <div class="day other"><span class="date">3</span></div>
+        <div class="day other weekend"><span class="date">4</span></div>
+        <div class="day other weekend"><span class="date">5</span></div>
+        
+        <!-- 之后都是下月了 -->
+        <div class="day other"><span class="date">6</span></div>
+        <div class="day other"><span class="date">7</span></div>
+        <div class="day other"><span class="date">8</span></div>
+        <div class="day other"><span class="date">9</span></div>
+        <div class="day other"><span class="date">10</span></div>
+        <div class="day other weekend"><span class="date">11</span></div>
+        <div class="day other weekend"><span class="date">12</span></div>
+        
+        <div class="day other"><span class="date">13</span></div>
+        <div class="day other"><span class="date">14</span></div>
+        <div class="day other"><span class="date">15</span></div>
+        <div class="day other"><span class="date">16</span></div>
+        <div class="day other"><span class="date">17</span></div>
+        <div class="day other weekend"><span class="date">18</span></div>
+        <div class="day other weekend"><span class="date">19</span></div>
+        
+        <div class="day other"><span class="date">20</span></div>
+        <div class="day other"><span class="date">21</span></div>
+        <div class="day other"><span class="date">22</span></div>
+        <div class="day other"><span class="date">23</span></div>
+        <div class="day other"><span class="date">24</span></div>
+        <div class="day other weekend"><span class="date">25</span></div>
+        <div class="day other weekend"><span class="date">26</span></div>
+    </div>
 </body>
 </html>
