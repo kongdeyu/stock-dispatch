@@ -16,31 +16,41 @@
         }
         .header {
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .title {
-            font-size: 20px;
+            font-size: 18px;
             color: #fff;
             font-weight: 700;
         }
         .subtitle {
             color: #888;
-            font-size: 11px;
+            font-size: 10px;
             margin-top: 2px;
+        }
+        
+        .month-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .month-label {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
         }
         .month-nav {
             display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 8px;
+            gap: 4px;
         }
         .nav-btn {
-            padding: 4px 10px;
+            padding: 3px 8px;
             background: #2d2d44;
             border: none;
             border-radius: 4px;
             color: #fff;
-            font-size: 11px;
+            font-size: 10px;
             text-decoration: none;
         }
         .nav-btn.current {
@@ -51,17 +61,6 @@
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 3px;
-            margin-top: 8px;
-        }
-        .month-label {
-            grid-column: 1 / -1;
-            color: #fff;
-            font-size: 14px;
-            font-weight: 600;
-            margin: 8px 0 5px 0;
-            padding-bottom: 4px;
-            border-bottom: 1px solid #333;
-            text-align: center;
         }
         .day-header {
             text-align: center;
@@ -70,7 +69,7 @@
             padding: 2px 0;
         }
         .day {
-            height: 28px;
+            height: 26px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -78,7 +77,7 @@
             background: #2d2d44;
             border-radius: 4px;
             color: #fff;
-            font-size: 11px;
+            font-size: 10px;
         }
         .day.has-content {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -90,12 +89,12 @@
             opacity: 0.3;
         }
         .tag {
-            font-size: 7px;
+            font-size: 6px;
         }
         
         .footer {
             text-align: center;
-            margin-top: 15px;
+            margin-top: 12px;
             color: #666;
             font-size: 10px;
         }
@@ -103,7 +102,7 @@
             display: flex;
             justify-content: center;
             gap: 12px;
-            margin-top: 8px;
+            margin-top: 6px;
             font-size: 10px;
             color: #888;
         }
@@ -113,12 +112,6 @@
     <div class="header">
         <div class="title">🧚 住毛山日报</div>
         <div class="subtitle">每天12点、20点更新</div>
-        
-        <div class="month-nav">
-            <a href="?month=2" class="nav-btn">← 上月</a>
-            <a href="?" class="nav-btn current">2026年3月</a>
-            <a href="?month=4" class="nav-btn">下月 →</a>
-        </div>
     </div>
 
     <div class="legend">
@@ -126,9 +119,16 @@
         <span>🔵 今天</span>
     </div>
 
+    <div class="month-bar">
+        <span class="month-label">2026年3月</span>
+        <div class="month-nav">
+            <a href="?month=2" class="nav-btn">上月</a>
+            <a href="?" class="nav-btn current">当月</a>
+            <a href="?month=4" class="nav-btn">下月</a>
+        </div>
+    </div>
+
     <div class="calendar">
-        <div class="month-label">2026年3月</div>
-        
         <div class="day-header">一</div>
         <div class="day-header">二</div>
         <div class="day-header">三</div>
