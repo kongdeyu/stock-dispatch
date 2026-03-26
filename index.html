@@ -7,58 +7,51 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            max-width: 480px;
+            max-width: 400px;
             margin: 0 auto;
-            padding: 24px 16px;
-            background: #fafafa;
+            padding: 40px 20px;
+            background: #fff;
             min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
         }
         
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
         .title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #1a1a1a;
+            text-align: center;
+            font-size: 32px;
+            font-weight: 300;
+            color: #1d1d1f;
+            margin-bottom: 6px;
         }
         .subtitle {
+            text-align: center;
             font-size: 13px;
-            color: #888;
-            margin-top: 4px;
-        }
-        
-        .card {
-            background: #fff;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            color: #86868b;
+            margin-bottom: 30px;
         }
         
         .month {
+            background: #fff;
+            border: 1px solid #d2d2d7;
+            border-radius: 12px;
+            padding: 16px;
+        }
+        
+        .month-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 16px;
         }
         .month-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 600;
-            color: #1a1a1a;
+            color: #1d1d1f;
         }
-        .month-nav {
-            display: flex;
-            gap: 8px;
-        }
-        .month-nav a {
-            padding: 4px 10px;
-            font-size: 12px;
-            color: #666;
+        .nav a {
+            font-size: 14px;
+            color: #007aff;
             text-decoration: none;
-            background: #f5f5f5;
-            border-radius: 6px;
+            margin-left: 12px;
         }
         
         .weekdays {
@@ -69,65 +62,69 @@
         }
         .weekday {
             font-size: 11px;
-            color: #999;
+            font-weight: 600;
+            color: #86868b;
             padding: 8px 0;
         }
         
         .days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
+            gap: 2px;
         }
         .day {
-            aspect-ratio: 1;
+            height: 36px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
-            color: #333;
-            border-radius: 10px;
+            font-size: 15px;
+            color: #1d1d1f;
+            border-radius: 50%;
             cursor: pointer;
-            transition: background 0.15s;
+            position: relative;
         }
         .day:hover {
-            background: #f0f0f0;
+            background: #f5f5f7;
         }
-        .day.has {
-            background: #e8e0ff;
-            color: #5b4fc3;
-            font-weight: 500;
+        .day.has::after {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background: #007aff;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 4px;
         }
         .day.today {
-            background: #1a1a1a;
+            background: #007aff;
             color: #fff;
         }
+        .day.today.has::after {
+            background: #fff;
+        }
         .day.other {
-            color: #ddd;
+            color: #d2d2d7;
         }
         
         .legend {
             text-align: center;
-            margin-top: 16px;
+            margin-top: 20px;
             font-size: 12px;
-            color: #999;
-        }
-        .legend span {
-            margin: 0 8px;
+            color: #86868b;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="title">📬 住毛山日报</div>
-        <div class="subtitle">每天 12:00 · 20:00 更新</div>
-    </div>
+    <div class="title">📅 住毛山日报</div>
+    <div class="subtitle">每天 12:00 · 20:00 更新</div>
     
-    <div class="card">
-        <div class="month">
-            <span class="month-title">2026年3月</span>
-            <div class="month-nav">
+    <div class="month">
+        <div class="month-header">
+            <span class="month-title">三月 2026</span>
+            <div class="nav">
                 <a href="?m=2">上月</a>
-                <a href="?">当月</a>
+                <a href="?">今天</a>
                 <a href="?m=4">下月</a>
             </div>
         </div>
@@ -186,8 +183,7 @@
     </div>
     
     <div class="legend">
-        <span>🟪 有内容</span>
-        <span>⬛ 今天</span>
+        蓝点 = 有内容 &nbsp;|&nbsp; 蓝色背景 = 今天
     </div>
 </body>
 </html>
