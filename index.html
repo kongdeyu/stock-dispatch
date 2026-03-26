@@ -63,42 +63,59 @@
         .days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 2px;
+            gap: 4px;
         }
         .day {
-            height: 40px;
+            height: 54px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 15px;
+            font-size: 14px;
             color: #000;
             cursor: pointer;
             position: relative;
             text-decoration: none;
-            border-radius: 50%;
+            border-radius: 10px;
+            transition: all 0.15s;
         }
         .day:hover {
-            background: #f0f0f0;
+            background: #f5f5f7;
         }
-        .day.weekend {
-            color: #8e8e93;
+        .day .date {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 2px;
         }
-        .day.has:not(.today)::before {
-            content: '';
-            width: 4px;
-            height: 4px;
+        .day .tag {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #fff;
             background: #007aff;
-            border-radius: 50%;
-            position: absolute;
-            bottom: 6px;
+        }
+        .day .tag.even {
+            background: #5856d6;
+        }
+        .day .tag.both {
+            background: linear-gradient(90deg, #007aff 50%, #5856d6 50%);
+        }
+        .day.weekend .date {
+            color: #8e8e93;
         }
         .day.today {
             background: #007aff;
+        }
+        .day.today .date,
+        .day.today .tag {
             color: #fff;
         }
+        .day.today .tag {
+            background: #fff;
+            color: #007aff;
+        }
         .day.other {
-            color: #d1d1d6;
+            opacity: 0.3;
         }
     </style>
 </head>
@@ -126,45 +143,45 @@
     </div>
     
     <div class="days">
-        <a class="day other" href="evening/晚间速递_20260323.html">23</a>
-        <a class="day other" href="evening/晚间速递_20260324.html">24</a>
-        <a class="day other" href="evening/晚间速递_20260325.html">25</a>
-        <a class="day has today" href="evening/晚间速递_20260326.html">26</a>
-        <a class="day" href="evening/晚间速递_20260327.html">27</a>
-        <a class="day weekend" href="evening/晚间速递_20260328.html">28</a>
-        <a class="day weekend" href="evening/晚间速递_20260329.html">29</a>
+        <a class="day other weekend" href="evening/晚间速递_20260323.html"><span class="date">23</span></a>
+        <a class="day other" href="evening/晚间速递_20260324.html"><span class="date">24</span></a>
+        <a class="day other" href="evening/晚间速递_20260325.html"><span class="date">25</span></a>
+        <a class="day today" href="evening/晚间速递_20260326.html"><span class="date">26</span><span class="tag both">午晚</span></a>
+        <a class="day" href="evening/晚间速递_20260327.html"><span class="date">27</span><span class="tag even">晚</span></a>
+        <a class="day weekend" href="evening/晚间速递_20260328.html"><span class="date">28</span></a>
+        <a class="day weekend" href="evening/晚间速递_20260329.html"><span class="date">29</span></a>
         
-        <a class="day" href="evening/晚间速递_20260330.html">30</a>
-        <a class="day" href="evening/晚间速递_20260331.html">31</a>
-        <a class="day other" href="evening/晚间速递_20260401.html">1</a>
-        <a class="day other" href="evening/晚间速递_20260402.html">2</a>
-        <a class="day other" href="evening/晚间速递_20260403.html">3</a>
-        <a class="day other weekend" href="evening/晚间速递_20260404.html">4</a>
-        <a class="day other weekend" href="evening/晚间速递_20260405.html">5</a>
+        <a class="day" href="evening/晚间速递_20260330.html"><span class="date">30</span><span class="tag">午</span></a>
+        <a class="day" href="evening/晚间速递_20260331.html"><span class="date">31</span><span class="tag even">晚</span></a>
+        <a class="day other" href="evening/晚间速递_20260401.html"><span class="date">1</span></a>
+        <a class="day other" href="evening/晚间速递_20260402.html"><span class="date">2</span></a>
+        <a class="day other" href="evening/晚间速递_20260403.html"><span class="date">3</span><span class="tag">午</span></a>
+        <a class="day other weekend" href="evening/晚间速递_20260404.html"><span class="date">4</span></a>
+        <a class="day other weekend" href="evening/晚间速递_20260405.html"><span class="date">5</span></a>
         
-        <a class="day other" href="evening/晚间速递_20260406.html">6</a>
-        <a class="day other" href="evening/晚间速递_20260407.html">7</a>
-        <a class="day other" href="evening/晚间速递_20260408.html">8</a>
-        <a class="day other" href="evening/晚间速递_20260409.html">9</a>
-        <a class="day other" href="evening/晚间速递_20260410.html">10</a>
-        <a class="day other weekend" href="evening/晚间速递_20260411.html">11</a>
-        <a class="day other weekend" href="evening/晚间速递_20260412.html">12</a>
+        <a class="day other" href="evening/晚间速递_20260406.html"><span class="date">6</span></a>
+        <a class="day other" href="evening/晚间速递_20260407.html"><span class="date">7</span><span class="tag even">晚</span></a>
+        <a class="day other" href="evening/晚间速递_20260408.html"><span class="date">8</span><span class="tag">午</span></a>
+        <a class="day other" href="evening/晚间速递_20260409.html"><span class="date">9</span></a>
+        <a class="day other" href="evening/晚间速递_20260410.html"><span class="date">10</span><span class="tag both">午晚</span></a>
+        <a class="day other weekend" href="evening/晚间速递_20260411.html"><span class="date">11</span></a>
+        <a class="day other weekend" href="evening/晚间速递_20260412.html"><span class="date">12</span></a>
         
-        <a class="day other" href="evening/晚间速递_20260413.html">13</a>
-        <a class="day other" href="evening/晚间速递_20260414.html">14</a>
-        <a class="day other" href="evening/晚间速递_20260415.html">15</a>
-        <a class="day other" href="evening/晚间速递_20260416.html">16</a>
-        <a class="day other" href="evening/晚间速递_20260417.html">17</a>
-        <a class="day other weekend" href="evening/晚间速递_20260418.html">18</a>
-        <a class="day other weekend" href="evening/晚间速递_20260419.html">19</a>
+        <a class="day other" href="evening/晚间速递_20260413.html"><span class="date">13</span><span class="tag">午</span></a>
+        <a class="day other" href="evening/晚间速递_20260414.html"><span class="date">14</span></a>
+        <a class="day other" href="evening/晚间速递_20260415.html"><span class="date">15</span><span class="tag even">晚</span></a>
+        <a class="day other" href="evening/晚间速递_20260416.html"><span class="date">16</span></a>
+        <a class="day other" href="evening/晚间速递_20260417.html"><span class="date">17</span><span class="tag both">午晚</span></a>
+        <a class="day other weekend" href="evening/晚间速递_20260418.html"><span class="date">18</span></a>
+        <a class="day other weekend" href="evening/晚间速递_20260419.html"><span class="date">19</span></a>
         
-        <a class="day other" href="evening/晚间速递_20260420.html">20</a>
-        <a class="day other" href="evening/晚间速递_20260421.html">21</a>
-        <a class="day other" href="evening/晚间速递_20260422.html">22</a>
-        <a class="day other" href="evening/晚间速递_20260423.html">23</a>
-        <a class="day other" href="evening/晚间速递_20260424.html">24</a>
-        <a class="day other weekend" href="evening/晚间速递_20260425.html">25</a>
-        <a class="day other weekend" href="evening/晚间速递_20260426.html">26</a>
+        <a class="day other" href="evening/晚间速递_20260420.html"><span class="date">20</span><span class="tag">午</span></a>
+        <a class="day other" href="evening/晚间速递_20260421.html"><span class="date">21</span></a>
+        <a class="day other" href="evening/晚间速递_20260422.html"><span class="date">22</span><span class="tag even">晚</span></a>
+        <a class="day other" href="evening/晚间速递_20260423.html"><span class="date">23</span></a>
+        <a class="day other" href="evening/晚间速递_20260424.html"><span class="date">24</span><span class="tag both">午晚</span></a>
+        <a class="day other weekend" href="evening/晚间速递_20260425.html"><span class="date">25</span></a>
+        <a class="day other weekend" href="evening/晚间速递_20260426.html"><span class="date">26</span></a>
     </div>
 </body>
 </html>
