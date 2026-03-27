@@ -226,7 +226,10 @@
         
         // 渲染当月 - 只显示今天及以前的速递
         const dispatchData = {
-            3: { 26: ['evening'] }
+            3: { 
+                26: ['evening'],
+                27: ['noon', 'evening']
+            }
         };
         
         // 检查日期是否在今天或之前
@@ -257,7 +260,7 @@
                 if (btns.length > 0) {
                     html += '<div class="btns">';
                     if (btns.includes('noon')) {
-                        const href = `noon/午间速递_${year}${String(month).padStart(2,'0')}${String(d).padStart(2,'0')}.html`;
+                        const href = `daily/${year}-${String(month).padStart(2,'0')}-${String(d).padStart(2,'0')}.html`;
                         html += '<a class="btn noon" href="' + href + '">午</a>';
                     }
                     if (btns.includes('evening')) {
