@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>住毛山日报 - 晚间速递 2026年3月27日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid #4a9eff;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 2.5em;
+            background: linear-gradient(90deg, #4a9eff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        .date {
+            color: #888;
+            font-size: 1.1em;
+        }
+        section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        h2 {
+            font-size: 1.5em;
+            color: #4a9eff;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(74,158,255,0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        h3 {
+            font-size: 1.1em;
+            color: #00d4ff;
+            margin: 16px 0 10px;
+        }
+        .stock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .stock-card {
+            background: rgba(74,158,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .stock-card:hover {
+            transform: translateY(-3px);
+            background: rgba(74,158,255,0.2);
+        }
+        .stock-symbol {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #4a9eff;
+        }
+        .stock-price {
+            font-size: 1.1em;
+            margin: 5px 0;
+        }
+        .stock-change {
+            font-size: 0.9em;
+        }
+        .positive { color: #00c853; }
+        .negative { color: #ff5252; }
+        
+        .news-item {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .news-item:last-child { border-bottom: none; }
+        .news-item a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .news-item a:hover { color: #4a9eff; }
+        .news-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .news-snippet {
+            font-size: 0.85em;
+            color: #888;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .reddit-post {
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-left: 3px solid #ff4500;
+        }
+        .reddit-post .subreddit {
+            font-size: 0.8em;
+            color: #ff4500;
+            font-weight: bold;
+        }
+        .reddit-post .title {
+            font-weight: 500;
+            margin: 5px 0;
+            display: block;
+            color: #e0e0e0;
+            text-decoration: none;
+        }
+        .reddit-post .title:hover { color: #4a9eff; }
+        .reddit-post .meta {
+            font-size: 0.8em;
+            color: #666;
+        }
+        
+        .ai-highlight {
+            background: linear-gradient(135deg, rgba(74,158,255,0.15), rgba(0,212,255,0.1));
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 1px solid rgba(74,158,255,0.3);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧚 住毛山日报</h1>
+            <div class="date">晚间速递 | 2026年3月27日 星期五</div>
+        </header>
+        
+        <!-- AI大模型最新动态 -->
+        <section>
+            <h2>🤖 AI大模型最新动态</h2>
+            <div class="ai-highlight">
+                <h3>🔥 全球AI模型排名更新</h3>
+                <p>根据最新Chatbot Arena数据：</p>
+                <ul>
+                    <li><strong>Google Gemini-3-pro</strong> 以1495分领跑</li>
+                    <li><strong>xAI Grok-4.1-thinking</strong> 1481分紧随其后</li>
+                    <li><strong>OpenAI GPT-5.1-high</strong> 1454分位居第四</li>
+                    <li><strong>百度文心5.0 Preview</strong> 1432分，国内第一</li>
+                </ul>
+            </div>
+            <div class="ai-highlight">
+                <h3>📰 热点新闻</h3>
+                <div class="news-item">
+                    <a href="https://hub.baai.ac.cn/view/51710" target="_blank" class="news-title">2025人工智能大事件回顾丨中国AI大模型篇</a>
+                    <span class="news-snippet">DeepSeek R1发布、性能比肩OpenAI o1，训练成本仅约560万美元，引发美股震荡...</span>
+                </div>
+                <div class="news-item">
+                    <a href="https://developer.volcengine.com/articles/7577300596110295078" target="_blank" class="news-title">AI大模型最新动态研究报告（2025年11月报）</a>
+                    <span class="news-snippet">百度文心5.0原生全模态架构突破，阿里千问升级为集团战略项目...</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 股票动态 -->
+        <section>
+            <h2>📈 股票最新行情</h2>
+            <div class="stock-grid">
+                <div class="stock-card">
+                    <div class="stock-symbol">NVDA</div>
+                    <div class="stock-price">$171.24</div>
+                    <div class="stock-change negative">-2.38%</div>
+                </div>
+                <div class="stock-card">
+                    <div class="stock-symbol">AMZN</div>
+                    <div class="stock-price">$178.50</div>
+                    <div class="stock-change positive">+0.85%</div>
+                </div>
+                <div class="stock-card">
+                    <div class="stock-symbol">MRVL</div>
+                    <div class="stock-price">$92.36</div>
+                    <div class="stock-change positive">+2.44%</div>
+                </div>
+                <div class="stock-card">
+                    <div class="stock-symbol">CRCL</div>
+                    <div class="stock-price">$103.86</div>
+                    <div class="stock-change positive">+2.46%</div>
+                </div>
+                <div class="stock-card">
+                    <div class="stock-symbol">HOOD</div>
+                    <div class="stock-price">$72.67</div>
+                    <div class="stock-change positive">+4.30%</div>
+                </div>
+                <div class="stock-card">
+                    <div class="stock-symbol">POET</div>
+                    <div class="stock-price">$5.52</div>
+                    <div class="stock-change positive">+1.50%</div>
+                </div>
+                <div class="stock-card">
+                    <div class="stock-symbol">RKLB</div>
+                    <div class="stock-price">$66.88</div>
+                    <div class="stock-change positive">+2.00%</div>
+                </div>
+                <div class="stock-card">
+                    <div class="stock-symbol">NBIS</div>
+                    <div class="stock-price">$115.40</div>
+                    <div class="stock-change positive">+9.50%</div>
+                </div>
+                <div class="stock-card">
+                    <div class="stock-symbol">IREN</div>
+                    <div class="stock-price">$18.50</div>
+                    <div class="stock-change positive">+9.00%</div>
+                </div>
+            </div>
+            <h3>📰 股票新闻</h3>
+            <div class="news-item">
+                <a href="https://finance.yahoo.com/quote/HOOD/news/" target="_blank" class="news-title">Robinhood (HOOD) 股票消息</a>
+                <span class="news-snippet">Robinhood宣布150亿美元股票回购计划及32.5亿美元信贷融通...</span>
+            </div>
+            <div class="news-item">
+                <a href="https://finance.yahoo.com/quote/MRVL/news/" target="_blank" class="news-title">Marvell (MRVL) 股票消息</a>
+                <span class="news-snippet">尽管执行稳健，MRVL股价仍下跌。AI数据中心需求强劲...</span>
+            </div>
+            <div class="news-item">
+                <a href="https://markets.businessinsider.com/news/iren" target="_blank" class="news-title">IREN 股票新闻</a>
+                <span class="news-snippet">Iren Stock Jumps 9% on Nvidia's $2B Deal with Nebius...</span>
+            </div>
+        </section>
+        
+        <!-- Reddit热帖 -->
+        <section>
+            <h3>💬 Reddit热帖</h3>
+            <h3 style="color: #ff4500;">r/wallstreetbets</h3>
+            <div class="reddit-post">
+                <span class="subreddit">r/wallstreetbets</span>
+                <a href="https://reddit.com/r/wallstreetbets/comments/1s4vee1/micron_sandisk_stocks_tumble_after_google_unveils/" target="_blank" class="title">Micron, SanDisk Stocks Tumble After Google Unveils AI Memory Compression Breakthrough</a>
+                <span class="meta">⬆️ 4.2k | 💬 287</span>
+            </div>
+            <div class="reddit-post">
+                <span class="subreddit">r/wallstreetbets</span>
+                <a href="https://reddit.com/r/wallstreetbets/comments/1s4ixtz/netflix_raises_prices_across_all_streaming_plans/" target="_blank" class="title">Netflix raises prices across all streaming plans</a>
+                <span class="meta">⬆️ 4.4k | 💬 997</span>
+            </div>
+            <div class="reddit-post">
+                <span class="subreddit">r/wallstreetbets</span>
+                <a href="https://reddit.com/r/wallstreetbets/comments/1s4hice/exclusive_musk_rewrites_ipo_playbook_with_large/" target="_blank" class="title">Exclusive: Musk rewrites IPO playbook with large slice of SpaceX stock for retail investors</a>
+                <span class="meta">⬆️ 1.7k | 💬 349</span>
+            </div>
+            <div class="reddit-post">
+                <span class="subreddit">r/wallstreetbets</span>
+                <a href="https://reddit.com/r/wallstreetbets/comments/1s4fz9s/wife_will_divorce_me_if_she_finds_out/" target="_blank" class="title">Wife will divorce me if she finds out</a>
+                <span class="meta">⬆️ 2.0k | 💬 1102</span>
+            </div>
+            
+            <h3 style="color: #0079d3; margin-top: 20px;">r/stocks</h3>
+            <div class="reddit-post" style="border-left-color: #0079d3;">
+                <span class="subreddit" style="color: #0079d3;">r/stocks</span>
+                <a href="https://reddit.com/r/stocks/comments/1s4kekg/trumps_pinky_promises_are_a_desperate_stalling/" target="_blank" class="title">Trump's pinky promises are a desperate stalling tactic to keep equities markets up</a>
+                <span class="meta">⬆️ 1.4k | 💬 238</span>
+            </div>
+            <div class="reddit-post" style="border-left-color: #0079d3;">
+                <span class="subreddit" style="color: #0079d3;">r/stocks</span>
+                <a href="https://reddit.com/r/stocks/comments/1s4ha2p/big_tech_sell_off/" target="_blank" class="title">Big Tech Sell Off</a>
+                <span class="meta">⬆️ 737 | 💬 407</span>
+            </div>
+            <div class="reddit-post" style="border-left-color: #0079d3;">
+                <span class="subreddit" style="color: #0079d3;">r/stocks</span>
+                <a href="https://reddit.com/r/stocks/comments/1s4jbxq/liberation_day_20/" target="_blank" class="title">Liberation Day 2.0</a>
+                <span class="meta">⬆️ 522 | 💬 352</span>
+            </div>
+        </section>
+        
+        <footer>
+            <p>🧚 住毛山日报 · 每天给你最in的科技财经资讯</p>
+            <p style="margin-top: 10px; color: #444;">Generated on 2026-03-27 21:37</p>
+        </footer>
+    </div>
+</body>
+</html>
