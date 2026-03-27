@@ -133,6 +133,12 @@
         .day.empty {
             visibility: hidden;
         }
+        .loading {
+            text-align: center;
+            color: #8e8e93;
+            font-size: 12px;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
@@ -158,14 +164,58 @@
         <div class="weekday">六</div>
     </div>
     
-    <div class="days" id="calendar"></div>
+    <div class="days" id="calendar">
+        <div class="loading">加载中...</div>
+    </div>
 
     <script>
-    const monthNames = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+    // 自动从GitHub API获取速递文件列表
+    let dispatchData = {};
+    let currentYear, currentMonth;
     
-    function getUrlParam(name) {
-        const params = new URLSearchParams(window.location.search);
-        return parseInt(params.get(name)) || new Date().getMonth() + 1;
+    async function fetchDispatchData() {
+        try {
+            // 并行获取daily和evening目录
+            const [dailyResp, eveningResp] = await Promise.all([
+                fetch('https://api.github.com/repos/kongdeyu/stock-dispatch/contents/daily'),
+                fetch('https://api.github.com/repos/kongdeyu/stock-dispatch/contents/evening')
+            ]);
+            
+            const dailyFiles = await dailyResp.json();
+            const eveningFiles = await eveningResp.json();
+            
+            // 解析daily目录 (文件名格式: 2026-03-27.html)
+            if (Array.isArray(dailyFiles)) {
+                dailyFiles.forEach(f => {
+                    const match = f.name.match(/^(\d{4})-(\d{2})-(\d{2})\.html$/);
+                    if (match) {
+                        const m = parseInt(match[2]);
+                        const d = parseInt(match[3]);
+                        if (!dispatchData[m]) dispatchData[m] = {};
+                        if (!dispatchData[m][d]) dispatchData[m][d] = [];
+                        dispatchData[m][d].push('noon');
+                    }
+                });
+            }
+            
+            // 解析evening目录 (文件名格式: 晚间速递_20260327.html)
+            if (Array.isArray(eveningFiles)) {
+                eveningFiles.forEach(f => {
+                    const match = f.name.match(/^晚间速递_(\d{4})(\d{2})(\d{2})\.html$/);
+                    if (match) {
+                        const m = parseInt(match[2]);
+                        const d = parseInt(match[3]);
+                        if (!dispatchData[m]) dispatchData[m] = {};
+                        if (!dispatchData[m][d]) dispatchData[m][d] = [];
+                        dispatchData[m][d].push('evening');
+                    }
+                });
+            }
+            
+            console.log('Loaded dispatch data:', dispatchData);
+        } catch (e) {
+            console.error('Failed to fetch dispatch data:', e);
+        }
     }
     
     function renderCalendar(year, month) {
@@ -173,15 +223,12 @@
         const isCurrentMonth = today.getFullYear() === year && today.getMonth() + 1 === month;
         const todayDate = today.getDate();
         
-        // 获取当月1日是周几 (0=周日, 1=周一...)
         const firstDay = new Date(year, month - 1, 1).getDay();
-        // 获取当月有多少天
         const daysInMonth = new Date(year, month, 0).getDate();
         
         const monthTitle = document.getElementById('monthTitle');
         monthTitle.textContent = year + '年' + month + '月';
         
-        // 更新导航链接
         const prevBtn = document.getElementById('prevMonth');
         const nextBtn = document.getElementById('nextMonth');
         
@@ -197,7 +244,6 @@
             nextBtn.href = '?m=' + (month + 1);
         }
         
-        // 禁用未来月份的下一页
         if (year > today.getFullYear() || (year === today.getFullYear() && month > today.getMonth() + 1)) {
             nextBtn.classList.add('disabled');
             nextBtn.href = 'javascript:void(0)';
@@ -208,15 +254,12 @@
         const container = document.getElementById('calendar');
         container.innerHTML = '';
         
-        // 计算需要显示的天数（包括上月和下月的填充）
-        // 周一=0, 周日=0，调整为周一=0
         const startPadding = firstDay;
-        
-        // 渲染上月的填充
         const prevMonth = month === 1 ? 12 : month - 1;
         const prevYear = month === 1 ? year - 1 : year;
         const daysInPrevMonth = new Date(prevYear, prevMonth, 0).getDate();
         
+        // 上月填充
         for (let i = startPadding - 1; i >= 0; i--) {
             const day = document.createElement('div');
             day.className = 'day other empty';
@@ -224,21 +267,7 @@
             container.appendChild(day);
         }
         
-        // 渲染当月 - 只显示今天及以前的速递
-        const dispatchData = {
-            3: { 
-                26: ['evening'],
-                27: ['noon', 'evening']
-            }
-        };
-        
-        // 检查日期是否在今天或之前
-        function isPastOrToday(y, m, d) {
-            const today = new Date();
-            const check = new Date(y, m - 1, d);
-            return check <= today;
-        }
-        
+        // 当月
         for (let d = 1; d <= daysInMonth; d++) {
             const day = document.createElement('div');
             const date = new Date(year, month - 1, d);
@@ -254,18 +283,17 @@
             
             let html = '<span class="date">' + d + '</span>';
             
-            // 检查是否有速递（只显示今天及之前的）
-            if (dispatchData[month] && dispatchData[month][d] && isPastOrToday(year, month, d)) {
+            // 检查是否有速递
+            const checkDate = new Date(year, month - 1, d);
+            if (dispatchData[month] && dispatchData[month][d] && checkDate <= today) {
                 const btns = dispatchData[month][d];
                 if (btns.length > 0) {
                     html += '<div class="btns">';
                     if (btns.includes('noon')) {
-                        const href = `daily/${year}-${String(month).padStart(2,'0')}-${String(d).padStart(2,'0')}.html`;
-                        html += '<a class="btn noon" href="' + href + '">午</a>';
+                        html += '<a class="btn noon" href="daily/' + year + '-' + String(month).padStart(2,'0') + '-' + String(d).padStart(2,'0') + '.html">午</a>';
                     }
                     if (btns.includes('evening')) {
-                        const href = `evening/晚间速递_${year}${String(month).padStart(2,'0')}${String(d).padStart(2,'0')}.html`;
-                        html += '<a class="btn evening" href="' + href + '">晚</a>';
+                        html += '<a class="btn evening" href="evening/晚间速递_' + year + String(month).padStart(2,'0') + String(d).padStart(2,'0') + '.html">晚</a>';
                     }
                     html += '</div>';
                 }
@@ -275,9 +303,9 @@
             container.appendChild(day);
         }
         
-        // 填充下月
+        // 下月填充
         const totalCells = startPadding + daysInMonth;
-        const remaining = 42 - totalCells; // 6行 x 7天
+        const remaining = 42 - totalCells;
         for (let d = 1; d <= remaining; d++) {
             const day = document.createElement('div');
             day.className = 'day other empty';
@@ -286,12 +314,16 @@
         }
     }
     
-    // 解析URL参数
-    const params = new URLSearchParams(window.location.search);
-    let year = parseInt(params.get('y')) || new Date().getFullYear();
-    let month = getUrlParam('m');
+    async function init() {
+        const params = new URLSearchParams(window.location.search);
+        currentYear = parseInt(params.get('y')) || new Date().getFullYear();
+        currentMonth = parseInt(params.get('m')) || new Date().getMonth() + 1;
+        
+        await fetchDispatchData();
+        renderCalendar(currentYear, currentMonth);
+    }
     
-    renderCalendar(year, month);
+    init();
     </script>
 </body>
 </html>
