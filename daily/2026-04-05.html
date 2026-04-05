@@ -29,6 +29,7 @@
     .tag.neutral { background: rgba(255,215,0,0.2); color: #ffd700; }
     .stock-item { display: flex; align-items: baseline; gap: 10px; }
     .stock-symbol { font-weight: bold; color: #00d4ff; min-width: 60px; }
+    .time-tag { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 0.7em; background: rgba(255,255,255,0.1); color: #888; margin-left: 8px; }
     .footer { text-align: center; padding: 30px 0; color: #666; font-size: 0.85em; }
     .footer a { color: #00d4ff; text-decoration: none; }
   </style>
@@ -37,27 +38,27 @@
   <div class="container">
     <div class="header">
       <h1>🧚 住毛山日报</h1>
-      <div class="date">2026年4月5日 · 星期六 · 午间速递</div>
-      <div class="tagline">每天中午，速递世界</div>
+      <div class="date">2026年4月5日 · 星期六 · 晚间速递</div>
+      <div class="tagline">每天早晚，速递世界</div>
     </div>
 
     <div class="section">
       <div class="section-title ai">💡 AI科技</div>
       <div class="item">
-        <div class="item-title">Anthropic 发布 Claude Mythos 5</div>
-        <div class="item-content">10万亿参数大模型，SpaceX 以2500亿美元收购 xAI，AI生态持续整合。</div>
+        <div class="item-title">Claude Mythos 5 发布 <span class="time-tag">4月</span></div>
+        <div class="item-content">10万亿参数大模型，SpaceX 以2500亿美元收购 xAI，AI生态加速整合。</div>
       </div>
       <div class="item">
-        <div class="item-title">Slackbot 升级自主工作助手</div>
+        <div class="item-title">Slackbot AI 升级 <span class="time-tag">3月31日</span></div>
         <div class="item-content">Salesforce 为 Slackbot 新增 30 个 AI 功能，转型自主工作助手。</div>
       </div>
       <div class="item">
-        <div class="item-title">微软新加坡 AI 投资</div>
-        <div class="item-content">微软在新加坡投资 55 亿美元用于 AI，Google DeepMind 发布 Gemma 4 开放模型。</div>
+        <div class="item-title">GPT-5.4 与 TurboQuant 发布 <span class="time-tag">4月</span></div>
+        <div class="item-content">OpenAI 发布新模型，AI压缩技术降低创业成本，开源工具持续涌现。</div>
       </div>
       <div class="item">
-        <div class="item-title">英伟达谷歌合作优化</div>
-        <div class="item-content">英伟达与谷歌合作，对 Gemma 4 进行优化，适配 NVIDIA GPU。</div>
+        <div class="item-title">AI创业到达"临界点"？</div>
+        <div class="item-content">2026年AI创业迎来转折，四项战略应用助力初创企业突围。</div>
       </div>
     </div>
 
@@ -68,88 +69,88 @@
           <span class="stock-symbol">MRVL</span>
           <span class="tag positive">正向</span>
         </div>
-        <div class="item-content">Q4财报后涨18.4%，数据中心业务同比增46%破60亿美元，定制芯片达15亿。</div>
+        <div class="item-content">Q4财报后涨9%，盘后续涨。数据中心业务强劲，Celestial AI合作预计2028年达$5亿年化。</div>
       </div>
       <div class="item">
         <div class="stock-item">
           <span class="stock-symbol">NBIS</span>
           <span class="tag positive">正向</span>
         </div>
-        <div class="item-content">TipRanks 评级 Strong Buy，8个买入1个持有，成长股潜力股。</div>
-      </div>
-      <div class="item">
-        <div class="stock-item">
-          <span class="stock-symbol">AMZN</span>
-          <span class="tag neutral">关注</span>
-        </div>
-        <div class="item-content">正洽谈收购卫星公司 Globalstar，意在与马斯克星链竞争。</div>
+        <div class="item-content">TipRanks 评级 Strong Buy，8个买入1个持有，Reddit用户推荐，AI基建潜力股。</div>
       </div>
       <div class="item">
         <div class="stock-item">
           <span class="stock-symbol">RKLB</span>
           <span class="tag positive">正向</span>
         </div>
-        <div class="item-content">Reddit 用户推荐标的，早期买入有收益，SpaceX IPO 热度带动航天板块。</div>
+        <div class="item-content">Reddit 用户推荐标的，SpaceX IPO 热度带动航天板块，早期买入有收益。</div>
+      </div>
+      <div class="item">
+        <div class="stock-item">
+          <span class="stock-symbol">IREN</span>
+          <span class="tag neutral">关注</span>
+        </div>
+        <div class="item-content">被列入AI基建推荐名单，与NBIS、VRT同属AI基础设施赛道。</div>
       </div>
     </div>
 
     <div class="section">
       <div class="section-title reddit">🔥 Reddit热帖</div>
       <div class="item">
+        <div class="item-title">r/wallstreetbets · 银行比石油更暴露风险</div>
+        <div class="item-content">用户读98份标普500 10-K发现：银行比石油公司更暴露于关税和战争风险，1.8k赞。</div>
+      </div>
+      <div class="item">
+        <div class="item-title">r/wallstreetbets · SpaceX IPO 策略</div>
+        <div class="item-content">用户分享如何操作 SpaceX IPO 获取400倍收益，1.1k赞，370评。</div>
+      </div>
+      <div class="item">
         <div class="item-title">r/stocks · 美伊战争"税收"</div>
-        <div class="item-content">美伊战争影响开始传导至美国企业和消费者，616赞107评。</div>
-      </div>
-      <div class="item">
-        <div class="item-title">r/wallstreetbets · 标普500关税战争风险</div>
-        <div class="item-content">用户阅读98份10-K发现：银行比石油公司更暴露于关税和战争风险，1.3k赞。</div>
-      </div>
-      <div class="item">
-        <div class="item-title">r/wallstreetbets · SpaceX IPO策略</div>
-        <div class="item-content">用户分享如何操作 SpaceX IPO 获取400倍收益，321赞211评。</div>
+        <div class="item-content">美伊战争影响开始传导至美国企业和消费者，763赞119评。</div>
       </div>
     </div>
 
     <div class="section">
       <div class="section-title news">📰 社会热点</div>
       <div class="item">
-        <div class="item-title">中方斡旋中东局势</div>
-        <div class="item-content">外交部表示中方密集开展斡旋工作，将派中国政府中东问题特使访问中东。</div>
+        <div class="item-title">全球首次！氢燃料航空发动机首飞成功</div>
+        <div class="item-content">中国航发兆瓦级氢燃料涡桨发动机AEP100配装7.5吨级无人机在株洲首飞，全球首创。</div>
       </div>
       <div class="item">
-        <div class="item-title">长鹰-8无人机首飞成功</div>
-        <div class="item-content">全球迄今首飞成功的最大无人运输机，"无人空中重卡"正式亮相。</div>
+        <div class="item-title">清明档票房破2亿</div>
+        <div class="item-content">截至4月5日16时45分，2026清明档总票房破2亿，《超级马力欧银河大电影》领跑。</div>
       </div>
       <div class="item">
-        <div class="item-title">我国正式入汛</div>
-        <div class="item-content">4月1日起入汛，今年汛期呈"北涝南旱"格局，北方洪涝可能多发。</div>
+        <div class="item-title">国内航线燃油附加费今起大涨5倍</div>
+        <div class="item-content">4月5日起800公里以下由10元涨至60元，800公里以上由20元涨至120元。</div>
       </div>
       <div class="item">
-        <div class="item-title">"天网2026"行动启动</div>
-        <div class="item-content">中央追逃办启动反腐败国际追逃追赃行动，数字人民币新增12家运营机构。</div>
+        <div class="item-title">丙午年清明公祭轩辕黄帝典礼举行</div>
+        <div class="item-content">4月5日9时50分在黄陵县桥山举行，海内外代表共赴现场祭祖。</div>
       </div>
     </div>
 
     <div class="section">
       <div class="section-title entertainment">🍉 娱乐八卦</div>
       <div class="item">
-        <div class="item-title">王祖贤缅怀张国荣逝世23周年</div>
-        <div class="item-content">现身温哥华纪念长椅献花，发布《倩女幽魂》片段追思，全网破防。</div>
+        <div class="item-title">易烊千玺维权：AI换脸短剧侵权风波</div>
+        <div class="item-content">工作室发声明，多部AI短剧未经授权使用其肖像声音，演员工委会发声支持。</div>
       </div>
       <div class="item">
-        <div class="item-title">宋宁峰承认婚内出轨</div>
-        <div class="item-content">向张婉婷、女儿及Q女士道歉，宣布无限期暂停所有演艺工作。</div>
+        <div class="item-title">鞠婧祎双剧破万创纪录</div>
+        <div class="item-content">《花间令》《月鳞绮纪》接连热度破万，成优酷首位"双破万"一番女主演员。</div>
       </div>
       <div class="item">
-        <div class="item-title">林青霞72岁近照曝光</div>
-        <div class="item-content">现身香港公益活动，满头白发皱纹明显，网友赞其优雅老去典范。</div>
+        <div class="item-title">阚清子《乘风2026》拒绝重唱引热议</div>
+        <div class="item-content">初舞台哽咽失误后两度拒绝倪萍提议重唱，称"需对其他姐姐公平"，热搜破亿。</div>
       </div>
       <div class="item">
-        <div class="item-title">孙艺真玄彬结婚四周年</div>
-        <div class="item-content">晒婚纱照纪念四周年，配文"永恒的爱与友情之间的某个位置"。</div>
+        <div class="item-title">张柏芝飞马德里陪二儿子比赛</div>
+        <div class="item-content">背"行李山"现身机场，赴西班牙陪小Q参加篮球赛，母子温馨互动。</div>
       </div>
       <div class="item">
-        <div class="item-title">《乘风2026》定档</div>
-        <div class="item-content">4月3日起每周五六播出，倪萍、章小蕙、杜华等加盟浪花评审团。</div>
+        <div class="item-title">《月鳞绮纪》零宣发成爆款</div>
+        <div class="item-content">删减11集后52小时热度破万，鞠婧祎34套华服、陈都灵银发狐妖造型惊艳。</div>
       </div>
     </div>
 
